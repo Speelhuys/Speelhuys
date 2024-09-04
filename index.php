@@ -1,8 +1,8 @@
 <?php
 //hier include je classes om verschilende functies uit te voeren
-include "../classes/session.php";
-include "../classes/user.php";
-include "../classes/database.php";
+include "classes/session.php";
+include "classes/user.php";
+include "classes/database.php";
 
 $key = md5(uniqid(rand(), true));
 
@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
     $user = user::validateUser($_POST["username"], $_POST["password"]);
     if ($user == null) {
       //hier wordt een foutmelding gegeven in het geval dat de gegevens niet correct zijn
-      $divError = '<br /><img src="error.png" width="20px" height="20px"">Voer geldige gegevens in!</img>';
+      $divError = '<br /><img src="images/error.png" width="20px" height="20px"">Voer geldige gegevens in!</img>';
     } else {
       //hier wordt een nieuwe sessie gecreërd
       $key = md5(uniqid(rand(), true));
@@ -32,18 +32,19 @@ if (isset($_POST["submit"])) {
 
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="../Css/admin.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
-
-<body id="center">
-    <h2>Inloggen</h2>
-    <form method="POST">
-        <label for="username">Gebruikersnaam:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Wachtwoord:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Inloggen">
+<body style="background-image: url();">  <!-- hier nog een achtergrondplaatje (tenzij we gewoon een kleur doen) -->
+  <h1 style="text-align:center;"><strong>Welkom</strong></h1> 
+  <div style="text-align:center;">
+    <br />
+    <form method="post">
+      <strong>Gebruikersnaam:</strong> <br /><input type="text" name="username" value="" required><br /><br /><br />
+      <strong>Wachtwoord:</strong> <br /><input type="password" name="password" value="" required><br /><br />
+      <input type="submit" name="btnSubmit" value="Login" style="width: 100px;">
+      <?php echo $divError; ?>
     </form>
+  </div>
 </body>
 
 </html>
