@@ -1,34 +1,30 @@
 <?php
-//hier include ik classes om verschilende functies uit te voeren
-include "../Classes/sessie.php";
-include "../Classes/gebruiker.php";
-include "../Classes/database.php";
+//hier include je classes om verschilende functies uit te voeren
+include "../classes/session.php";
+include "../classes/user.php";
+include "../classes/database.php";
 
 $key = md5(uniqid(rand(), true));
 
-// hier word gecheckt of de gebruiker wel in de database staat
-$error = "";
-if (isset($_POST["username"])) {
-    // hier word een nieuwe sessie gemaakt
-    $sessie = new Sessie();
-    $gebruikers = gebruiker::getByUsernameAndPassword($_POST['username'], $_POST['password']);
-    
-    if (count($gebruikers) > 0) {
-        foreach ($gebruikers as $gebruiker) {
-            $sessie->userId = $gebruiker->userId;
-            $sessie->key = $key;
-            $sessie->start = date("Y-m-d H:i:s");
-            $sessie->end = date("Y-m-d H:i:s", strtotime("+1 month"));
-            $sessie->insert();
-        }
-
-         // hier word een cookie gemaakt voor 1 maand je gebruikt een cookie om gegevens op teslaan van de ingelogde gebruiker
-        setcookie("keukenprins-session", $key, strtotime("+1 month"), "/");
-        header("location: admin.php");
+$divError = "";
+if (isset($_POST["submit"])) {
+    $user = user::validateUser($_POST["username"], $_POST["password"]);
+    if ($user == null) {
+      //hier wordt een foutmelding gegeven in het geval dat de gegevens niet correct zijn
+      $divError = '<br /><img src="error.png" width="20px" height="20px"">Voer geldige gegevens in!</img>';
     } else {
-        $error = "er is geen juiste gebruiker gevonden";
+      //hier wordt een nieuwe sessie gecreërd
+      $key = md5(uniqid(rand(), true));
+      $session = new Session();
+      $session->userId = $user->id;
+      $session->key = $key;
+      $session->start = date("Y-m-d H:i:s");
+      $session->end = date("Y-m-d H:i:s", strtotime("+1 month"));
+      setcookie("speelhuys-session", $key, strtotime("+1 month"), "/");
+      $session->insert();
+      header("Location: admin/admin.php");
     }
-}
+  }
 
 ?>
 
@@ -47,10 +43,6 @@ if (isset($_POST["username"])) {
         <label for="password">Wachtwoord:</label><br>
         <input type="password" id="password" name="password"><br><br>
         <input type="submit" value="Inloggen">
-        <?php
-        echo "<br>";
-        echo $error;
-        ?>
     </form>
 </body>
 
