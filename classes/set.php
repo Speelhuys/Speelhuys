@@ -7,57 +7,72 @@ class set
     public $description;
     public $brandId;
     public $themeId;
-    
-    //deze functie haalt de gegevens van alle blogs van een bepaalde schrijver uit de database op
-    public static function getBlogs($blogAuthor)
+    public $image;
+    public $price;
+    public $age;
+    public $pieces;
+    public $stock;
+
+    //deze functie haalt de gegevens van alle sets op
+    public function getSets()
     {
         $conn = database::start();
 
-        $blogAuthor = mysqli_real_escape_string($conn, $blogAuthor);
-
-        $sql = "SELECT * FROM blogs WHERE blog_author = '$blogAuthor'";
+        $sql = "SELECT * FROM sets";
         $result = $conn->query($sql);
 
-        $blogs = [];
+        $sets = [];
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $blog = new blog();
-                $blog->blogID = $row['blog_id'];
-                $blog->blogTitle = $row['blog_title'];
-                $blog->blogContent = $row['blog_content'];
-                $blog->blogImage = $row['blog_image'];
-                $blog->blogAuthor = $row['blog_author'];
-                $blogs[] = $blog;
+                $set = new set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_category'];
+                $set->brandId = $row['set_price'];
+                $set->themeId = $row['set_themeId'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+
+                $sets[] = $set;
             }
         }
         $conn->close();
-        return $blogs;
+        return $sets;
     }
     //similair aan de vorige functie, maar haalt (aan de hand van de blog_id) in de plaats van de gegevens van alle blogs alleen gegevens van één blog
-    public static function getBlog($id)
+    public static function getSet($id)
     {
         $conn = database::start();
-        $blog = null;
+        $set = null;
         $id = mysqli_real_escape_string($conn, $id);
-        $sql = "SELECT * FROM blogs WHERE blog_id = $id";
+        $sql = "SELECT * FROM sets WHERE set_id = $id";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $blog = new blog();
-                $blog->blogID = $row['blog_id'];
-                $blog->blogTitle = $row['blog_title'];
-                $blog->blogContent = $row['blog_content'];
-                $blog->blogImage = $row['blog_image'];
-                $blog->blogAuthor = $row['blog_author'];
+                $set = new set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_category'];
+                $set->brandId = $row['set_price'];
+                $set->themeId = $row['set_themeId'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+
             }
         }
         $conn->close();
-        return $blog;
+        return $set;
     }
     //deze functie zorgt ervoor dat de ingevoerde gegevens in de database komen
-    public function insert($blogTitle, $blogContent, $blogImage, $blogAuthor)
+    public function insert($name, $description, $brandId, $themeId, $image, )
     {
         $conn = database::start();
         $blogTitle = mysqli_real_escape_string($conn, $blogTitle);
@@ -65,16 +80,22 @@ class set
         $blogImage = mysqli_real_escape_string($conn, $blogImage);
         $blogAuthor = mysqli_real_escape_string($conn, $blogAuthor);
 
-        $sql = "INSERT INTO blogs ( 
-        blog_title, 
-        blog_image,
-        blog_content,
-        blog_author
+        $sql = "INSERT INTO sets ( 
+        set_name, 
+        set_descrition,
+        set_brand_id,
+        set_theme_id,
+        set_image,
+        set_price,
+        set_age,
+        set_pieces,
+        set_stock
         ) VALUES (
-        '" . $blogTitle . "',
+        '" . $name . "',
         '" . $blogImage . "',
         '" . $blogContent . "',
-        '" . $blogAuthor . "'
+        '" . $blogAuthor . "',
+
         )";
         $conn->query($sql);
         $conn->close();
