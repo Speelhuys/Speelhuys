@@ -1,12 +1,12 @@
 <?php
 //hier include ik classes om verschilende functies uit te voeren
 include "../classes/database.php";
-include "../Classes/blog.php";
-include "../Classes/sessie.php";
+include "../Classes/set.php";
+include "../Classes/session.php";
 
 $image = null;
 
-$Sessie = Session::findActiveSession();
+$Session = Session::findActiveSession();
 
 if ($Session = null) {
 
