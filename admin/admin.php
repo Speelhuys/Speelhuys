@@ -38,14 +38,8 @@ include "../classes/session.php";
             <div class="row">
                 
                 <?php
-                $sets = Set::getSets();
-
-                $Sessie = Session::findActiveSession();
-
-                if ($Session == null) {
-                    header("location: ../index.php");
-                    exit;
-                }
+                $set = new set;
+                $sets = $set->getSets();
 
                 foreach ($sets as $set) {
 

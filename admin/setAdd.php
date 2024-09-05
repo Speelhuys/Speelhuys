@@ -24,10 +24,18 @@ if (isset($_POST["plaats"])) {
     }
 
     $set = new set();
-    $set->title = $_POST['titel'];
     $set->image = $image;
-    $set->author = $_POST['auteur'];
-    $set->content = $_POST['content'];
+    $set = new set();
+    $set->id = $_POST['set_id'];
+    $set->name = $_POST['set_name'];
+    $set->description = $_POST['set_category'];
+    $set->brandId = $_POST['set_price'];
+    $set->themeId = $_POST['set_themeId'];
+    $set->image = $_POST['set_image'];
+    $set->price = $_POST['set_price'];
+    $set->age = $_POST['set_age'];
+    $set->pieces = $_POST['set_pieces'];
+    $set->stock = $_POST['set_stock'];
     $set->insert();
 
     header("location: admin.php");
@@ -51,7 +59,7 @@ if (isset($_POST["plaats"])) {
     <div class="container-fluid text-center">
         <div class="row align-items-start" id="rowTop">
             <div class="col text-left">
-                <input type="button" id="bekijk" name="bekijk" value="Bekijk">
+                <input type="button" id="bekijk" name="watch" value="watch">
             </div>
             <div class="col">
                 <center>
@@ -59,7 +67,7 @@ if (isset($_POST["plaats"])) {
                 </center>
             </div>
             <div class="col text-right">
-                <input type="button" id="loguit" name="loguit" value="Uitloggen">
+                <input type="button" id="logout" name="logout" value="Uitloggen">
             </div>
         </div>
         <form method="post" enctype="multipart/form-data">
@@ -67,10 +75,10 @@ if (isset($_POST["plaats"])) {
                 <div class="col">
                     <div class="row">
                         <div class="col-4">
-                            <p id="kleur">Voer titel in</p>
+                            <p id="colour">Voer de naam in</p>
                         </div>
                         <div class="col-8">
-                            <input type="text" id="titel" name="titel" placeholder="voer titel in">
+                            <input type="text" id="name" name="name" placeholder="voer de naam in in">
                         </div>
                     </div>
                     <div class="row">
