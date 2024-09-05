@@ -1,5 +1,5 @@
 <?php
-//hier include ik classes om verschilende functies uit te voeren
+
 include "../classes/database.php";
 include "../classes/set.php";
 include "../classes/session.php";
@@ -12,7 +12,7 @@ include "../classes/session.php";
 
 <head>
     <title>Beheer Producten</title>
-    <!-- hier voeg ik mijn css toe en bootstrap -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../Css/admin.css">
     <link rel="stylesheet" href="../CSS/jquery-te-1.4.0.css">
@@ -38,16 +38,16 @@ include "../classes/session.php";
             <div class="row">
                 
                 <?php
-                $product = product::FindAll();
+                $sets = Set::getSets();
 
-                $Sessie = Sessie::vindActieveSessie();
+                $Sessie = Session::findActiveSession();
 
-                if ($Sessie == null) {
+                if ($Session == null) {
                     header("location: ../index.php");
                     exit;
                 }
 
-                foreach ($products as $product) {
+                foreach ($sets as $set) {
 
                 ?>
 
