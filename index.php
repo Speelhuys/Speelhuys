@@ -1,50 +1,42 @@
 <?php
-//hier include je classes om verschilende functies uit te voeren
-require "classes/session.php";
-require "classes/user.php";
 require "classes/database.php";
-$divError = null;
-if (isset($_GET["message"])) {
-  $_GET["message"];
-}
-if (isset($_POST["submit"])) {
-  $user = user::validateUser($_POST["username"], $_POST["password"]);
-  if ($user == null) {
-    //hier wordt een foutmelding aan het variabel gebonden in het geval dat de gegevens niet correct zijn
-    $divError = '<br /><img src="images/error.png" width="20px" height="20px">Voer geldige gegevens in!</img>';
-  } else {
-    //hier wordt een nieuwe sessie gecreërd
-    $key = md5(uniqid(rand(), true));
-    $session = new Session();
-    $session->userId = $user->id;
-    $session->key = $key;
-    $session->start = date("Y-m-d H:i:s");
-    $session->end = date("Y-m-d H:i:s", strtotime("+1 month"));
-    setcookie("speelhuys-session", $key, strtotime("+1 month"), "/");
-    $session->insert();
-    header("Location: admin/admin.php");
-  }
-}
-
+require "classes/user.php";
 ?>
 
-<html>
+<!DOCTYPE html>
+<header>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Garage</title>
+</header>
 
-<head>
-  <title>Login</title>
-  <link rel="stylesheet" href="css/admin.css">
-</head>
-
-<body style="background-image: url();"> <!-- hier nog een achtergrondplaatje (tenzij we gewoon een kleur doen) -->
-  <h1 style="text-align:center;"><strong>Welkom</strong></h1>
-  <div style="text-align:center;">
-    <br />
-    <form method="post">
-      <strong>Gebruikersnaam:</strong> <br /><input type="text" name="username" value="" required><br /><br /><br />
-      <strong>Wachtwoord:</strong> <br /><input type="password" name="password" value="" required><br /><br />
-      <input type="submit" name="submit" value="Login" style="width: 100px;">
-      <?php echo $divError; ?>
-    </form>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="col-1"><img src="images/error.png" style="height: 100%; width: 100%;"></div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Producten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.php">Bestellingen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="inlogpage.php">Inloggen</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="content">
+  <h1 class="neonText" style="text-align: center;">Welkom!</h1>
   </div>
 </body>
 
