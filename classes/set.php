@@ -13,7 +13,6 @@ class set
     public $pieces;
     public $stock;
 
-    //deze functie haalt de gegevens van alle sets op
     public function getSets()
     {
         $conn = database::start();
@@ -87,7 +86,7 @@ class set
 
         $sql = "INSERT INTO sets ( 
         set_name, 
-        set_descrition,
+        set_description,
         set_brand_id,
         set_theme_id,
         set_image,
@@ -111,56 +110,36 @@ class set
         $conn->close();
     }
     //deze functie zorgt ervoor dat de gegevens in de database bewerkt worden
-    public function update($editID, $blogTitle, $blogContent, $image)
+    public function update()
     {
         $conn = database::start();
-        $editID = mysqli_real_escape_string($conn, $editID);
-        $blogTitle = mysqli_real_escape_string($conn, $blogTitle);
-        $blogContent = mysqli_real_escape_string($conn, $blogContent);
-        $image = mysqli_real_escape_string($conn, $image);
+
         $sql = "
         UPDATE
-           blogs
+           sets
         SET
-           blog_title = '" . $blogTitle . "', 
-           blog_content = '" . $blogContent . "', 
-           blog_image = '" . $image . "' 
+           set_name = '" . $conn->real_escape_string($this->name) . "', 
+           set_description = '" . $conn->real_escape_string($this->description) . "', 
+           set_brand_id = '" . $conn->real_escape_string($this->brandId) . "',
+           set_theme_id = '" . $conn->real_escape_string($this->themeId) . "',
+           set_image = '" . $conn->real_escape_string($this->image) . "',
+           set_price = '" . $conn->real_escape_string($this->price) . "',
+           set_age = '" . $conn->real_escape_string($this->age) . "',
+           set_pieces = '" . $conn->real_escape_string($this->pieces) . "',
+           set_stock = '" . $conn->real_escape_string($this->stock) . "'
         WHERE
-           blog_id = '" . $editID . "'         
+           set_id = '" . $conn->real_escape_string($this->id) . "'         
         ";
         $conn->query($sql);
+        $conn->close();
     }
     //deze functie zorgt ervoor dat je wat wist uit de database (aan de hand van de blog_id)
     public static function delete($id)
     {
         $conn = database::start();
         $id = mysqli_real_escape_string($conn, $id);
-        $sql = "DELETE FROM blogs WHERE blog_id = $id";
+        $sql = "DELETE FROM sets WHERE set_id = $id";
         $conn->query($sql);
         $conn->close();
-    }
-    //deze functie haalt de gegevens van alle blogs in de database op
-    public static function allBlogs()
-    {
-        $conn = database::start();
-
-        $sql = "SELECT * FROM blogs";
-        $result = $conn->query($sql);
-
-        $blogs = [];
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $blog = new blog();
-                $blog->blogID = $row['blog_id'];
-                $blog->blogTitle = $row['blog_title'];
-                $blog->blogContent = $row['blog_content'];
-                $blog->blogImage = $row['blog_image'];
-                $blog->blogAuthor = $row['blog_author'];
-                $blogs[] = $blog;
-            }
-        }
-        $conn->close();
-        return $blogs;
     }
 }
