@@ -72,13 +72,18 @@ class set
         return $set;
     }
     //deze functie zorgt ervoor dat de ingevoerde gegevens in de database komen
-    public function insert($name, $description, $brandId, $themeId, $image, )
+    public function insert()
     {
         $conn = database::start();
-        $blogTitle = mysqli_real_escape_string($conn, $blogTitle);
-        $blogContent = mysqli_real_escape_string($conn, $blogContent);
-        $blogImage = mysqli_real_escape_string($conn, $blogImage);
-        $blogAuthor = mysqli_real_escape_string($conn, $blogAuthor);
+        $name = mysqli_real_escape_string($conn, $this->name);
+        $description = mysqli_real_escape_string($conn, $this->description);
+        $brandId = mysqli_real_escape_string($conn, $this->brandId);
+        $themeId = mysqli_real_escape_string($conn, $this->themeId);
+        $image = mysqli_real_escape_string($conn, $this->image);
+        $price = mysqli_real_escape_string($conn, $this->price);
+        $age = mysqli_real_escape_string($conn, $this->age);
+        $pieces = mysqli_real_escape_string($conn, $this->pieces);
+        $stock = mysqli_real_escape_string($conn, $this->stock);
 
         $sql = "INSERT INTO sets ( 
         set_name, 
@@ -92,9 +97,14 @@ class set
         set_stock
         ) VALUES (
         '" . $name . "',
-        '" . $blogImage . "',
-        '" . $blogContent . "',
-        '" . $blogAuthor . "',
+        '" . $description . "',
+        '" . $brandId . "',
+        '" . $themeId . "',
+        '" . $image . "',
+        '" . $price . "',
+        '" . $age . "',
+        '" . $pieces . "',
+        '" . $stock . "'
 
         )";
         $conn->query($sql);
