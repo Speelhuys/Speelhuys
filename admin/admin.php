@@ -4,9 +4,10 @@ include "../classes/database.php";
 include "../classes/set.php";
 include "../classes/session.php";
 
-
-
-?>  
+if (isset($_POST['btnAdd'])) {
+    header("Location:setAdd.php");
+}
+?>
 
 <html>
 
@@ -22,35 +23,31 @@ include "../classes/session.php";
 
 <body>
     <div class="container-fluid text-center">
+        <div class="col text-right">
+
+            <a href="../index.php" class="button" id="Uitloggen">Uitloggen</a>
+        </div>
         <div class="row" id="rowTop">
-            <div class="col text-left">
-                <a href="insert.php" class="button" id="Plaats">Plaats</a>
-            </div>
             <div class="col text-center">
                 <h1 id="welkom"> Welkom </h1>
             </div>
-            <div class="col text-right">
-
-                <a href="index.php" class="button" id="Uitloggen">Uitloggen</a>
-            </div>
         </div>
+        <br />
         <div class="col">
             <div class="row">
-                
+
                 <?php
                 $set = new set;
                 $sets = $set->getSets();
 
                 foreach ($sets as $set) {
-
-                ?>
-
-                    <div class="col-4" id="afstand">
-
-                    </div>
-                <?php } ?>
+                    echo '<div class="col-4" id="afstand"><label>' . $set->name . '</label></div>';
+                } ?>
             </div>
         </div>
+        <form method="POST">
+            <input type="submit" name="btnAdd" id="btnAdd">
+        </form>
 
 
 

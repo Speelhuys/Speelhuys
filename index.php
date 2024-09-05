@@ -26,10 +26,9 @@ require "classes/user.php";
             <a class="nav-link" href="products.php">Producten</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="orders.php">Bestellingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="inlogpage.php">Inloggen</a>
+            <a class="nav-link" href="loginpage.php">Inloggen</a>
           </li>
         </ul>
       </div>
