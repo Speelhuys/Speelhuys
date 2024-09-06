@@ -73,67 +73,67 @@ if (isset($_POST["plaats"])) {
         <form method="post" enctype="multipart/form-data">
             <div class="row align-items-start" id="rowMid">
                 <div class="col">
-                    <div class="row">
-                        <div class="col-4">
+                    <div class="row-2">
+                        <div class="col-8">
                             <p id="colour">Voer de naam in</p>
                         </div>
                         <div class="col-8">
                             <input type="text" id="name" name="name" placeholder="voer de naam in in">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
+                    <div class="row-2">
+                        <div class="col-8">
                             <p id="kleur">Voer beschrijving in</p>
                         </div>
                         <div class="col-8">
                             <input type="text" id="description" name="description" placeholder="Voer beschrijving in">
                         </div>
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="row-2">
+                            <div class="col-8">
                                 <p id="kleur">Voer bran id in</p>
                             </div>
                             <div class="col-8">
                                 <input type="text" id="brandId" name="brandId" placeholder="Voer Brand id in">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="row-2">
+                            <div class="col-8">
                                 <p id="kleur">Voer theme id in</p>
                             </div>
                             <div class="col-8">
                                 <input type="text" id="ThemeId" name="themeId" placeholder="Voer theme id in">
                             </div>
-                            <div class="row">
-                                <div class="col-4">
+                            <div class="row-2">
+                                <div class="col-8">
                                     <p id="kleur">Voer prijs in</p>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" id="price" name="price" placeholder="Voer prijs  in">
                                 </div>
-                                <div class="row">
-                                    <div class="col-4">
+                                <div class="row-2">
+                                    <div class="col-8">
                                         <p id="kleur">Voer leeftijd in</p>
                                     </div>
                                     <div class="col-8">
                                         <input type="text" id="age" name="age" placeholder="Voer leeftijd in">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-4">
+                                    <div class="row-2">
+                                        <div class="col-8">
                                             <p id="kleur">Voer aantal stenen in</p>
                                         </div>
                                         <div class="col-8">
                                             <input type="text" id="pieces" name="pieces" placeholder="Voer aantal in">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-4">
+                                        <div class="row-2">
+                                            <div class="col-8">
                                                 <p id="kleur">Voer vorraad in</p>
                                             </div>
                                             <div class="col-8">
                                                 <input type="text" id="stock" name="stock" placeholder="Voer voorraad in">
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-4">
+                                            <div class="row-2">
+                                                <div class="col-8">
                                                     <p id="kleur">Voeg afbeelding toe</p>
                                                 </div>
                                                 <div class="col-8">
@@ -141,16 +141,18 @@ if (isset($_POST["plaats"])) {
                                                 </div>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-4">
+                                            <div class="row-2">
+                                                <div class="col-8">
                                                 </div>
                                                 <div class="col-8">
                                                     <input type="submit" id="plaats" name="plaats" value="Plaats blog">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <textarea class="jqte" id="content" name="content" required></textarea>
+                                        <div class="row-2">
+                                            <div class="col-12">
+                                                <textarea class="jqte" id="content" name="content" required></textarea>
+                                            </div>
                                         </div>
                                     </div>
         </form>
