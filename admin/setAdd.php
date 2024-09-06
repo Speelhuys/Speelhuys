@@ -74,7 +74,7 @@ if (isset($_POST["plaats"])) {
             <div class="row align-items-start" id="rowMid">
                 <div class="col">
                     <div class="row-2">
-                        <div class="col-8">
+                        <div class="col-4">
                             <p id="colour">Voer de naam in</p>
                         </div>
                         <div class="col-8">
