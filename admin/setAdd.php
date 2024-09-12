@@ -12,7 +12,7 @@ if (isset($_POST['logout'])) {
     header("location: ../index.php");
     exit;
 }
-if (isset($_POST['watch'])){
+if (isset($_POST['watch'])) {
     header("location: ../products.php");
     exit;
 }
@@ -59,7 +59,7 @@ if (isset($_POST["plaats"])) {
     <link rel="stylesheet" href="../CSS/jquery-te-1.4.0.css">
 </head>
 
-<body>
+<body style="background-image: url(../images/lego\ \(1\).jpeg);">
     <div class="container-fluid text-center">
         <div class="row align-items-start" id="rowTop">
             <div class="col text-left">
@@ -68,9 +68,11 @@ if (isset($_POST["plaats"])) {
                 </form>
             </div>
             <div class="col">
-                <center>
-                    <h1 id="welkom">Welkom</h1>
-                </center>
+                <div class="row align-items-start" id="rowMid">
+                    <center>
+                        <h1 id="welkom">Welkom</h1>
+                    </center>
+                </div>
             </div>
             <form method="post">
                 <div class="col text-right">
@@ -81,68 +83,74 @@ if (isset($_POST["plaats"])) {
 
         <form method="post" enctype="multipart/form-data">
             <div class="row align-items-start" id="rowMid">
-                <div class="col">
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="name">Voer de naam in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Voer de naam in">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="name">Voer de naam in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="name" name="name" placeholder="Voer de naam in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="brandId" name="brandId" placeholder="Voer brand id in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="themeId">Voer theme id in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="themeId" name="themeId" placeholder="Voer theme id in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="price">Voer prijs in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="price" name="price" placeholder="Voer prijs in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="age">Voer leeftijd in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="age" name="age" placeholder="Voer leeftijd in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="pieces">Voer aantal stenen in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="pieces" name="pieces" placeholder="Voer aantal in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="stock">Voer voorraad in</label>
+
+                                <input type="text" class="form-control" style="width: 30%;" id="stock" name="stock" placeholder="Voer voorraad in">
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
+
+                                <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Voer brand id in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="themeId">Voer theme id in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="themeId" name="themeId" placeholder="Voer theme id in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="price">Voer prijs in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="price" name="price" placeholder="Voer prijs in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="age">Voer leeftijd in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="age" name="age" placeholder="Voer leeftijd in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="pieces">Voer aantal stenen in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="pieces" name="pieces" placeholder="Voer aantal in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="stock">Voer voorraad in</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" id="stock" name="stock" placeholder="Voer voorraad in">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
-                        <div class="col-8">
-                            <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-8">
-                            <input type="submit" class="btn btn-primary" id="plaats" name="plaats" value="Plaats blog">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <textarea class="jqte" id="content" name="content" style="width: 100%;" required></textarea>
+                        <div class="col-6">
+                            <textarea class="jqte" id="content" name="content" style="width: 70%;" required></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="form-group row">
+                <div class="col-8">
+                        <center>
+                            <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
+                        </center>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
     </div>
 </body>
 <footer></footer>
