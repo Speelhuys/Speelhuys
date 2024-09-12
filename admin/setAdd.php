@@ -82,14 +82,14 @@ if (isset($_POST["plaats"])) {
                         </div>
                     </div>
                     <div class="row-2">
-                        <div class="col-8">
+                        <div class="col-4">
                             <p id="kleur">Voer beschrijving in</p>
                         </div>
                         <div class="col-8">
                             <input type="text" id="description" name="description" placeholder="Voer beschrijving in">
                         </div>
                         <div class="row-2">
-                            <div class="col-8">
+                            <div class="col-4">
                                 <p id="kleur">Voer bran id in</p>
                             </div>
                             <div class="col-8">
@@ -97,35 +97,35 @@ if (isset($_POST["plaats"])) {
                             </div>
                         </div>
                         <div class="row-2">
-                            <div class="col-8">
+                            <div class="col-4">
                                 <p id="kleur">Voer theme id in</p>
                             </div>
                             <div class="col-8">
                                 <input type="text" id="ThemeId" name="themeId" placeholder="Voer theme id in">
                             </div>
                             <div class="row-2">
-                                <div class="col-8">
+                                <div class="col-4">
                                     <p id="kleur">Voer prijs in</p>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" id="price" name="price" placeholder="Voer prijs  in">
                                 </div>
                                 <div class="row-2">
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p id="kleur">Voer leeftijd in</p>
                                     </div>
                                     <div class="col-8">
                                         <input type="text" id="age" name="age" placeholder="Voer leeftijd in">
                                     </div>
                                     <div class="row-2">
-                                        <div class="col-8">
+                                        <div class="col-4">
                                             <p id="kleur">Voer aantal stenen in</p>
                                         </div>
                                         <div class="col-8">
                                             <input type="text" id="pieces" name="pieces" placeholder="Voer aantal in">
                                         </div>
                                         <div class="row-2">
-                                            <div class="col-8">
+                                            <div class="col-4">
                                                 <p id="kleur">Voer vorraad in</p>
                                             </div>
                                             <div class="col-8">
@@ -133,7 +133,7 @@ if (isset($_POST["plaats"])) {
                                             </div>
 
                                             <div class="row-2">
-                                                <div class="col-8">
+                                                <div class="col-4">
                                                     <p id="kleur">Voeg afbeelding toe</p>
                                                 </div>
                                                 <div class="col-8">
