@@ -142,4 +142,54 @@ class set
         $conn->query($sql);
         $conn->close();
     }
+    public static function filterSets($set_id = '', $set_name = '', $set_brand_id = '', $set_age = '', $set_price = '')
+    {
+        $conn = database::start();
+
+        // Start the query
+        $sql = "SELECT * FROM sets WHERE 1=1";
+
+        // Apply filters dynamically
+        if ($set_id) {
+            $sql .= " AND set_id = '" . $conn->real_escape_string($set_id) . "'";
+        }
+        if ($set_name) {
+            $sql .= " AND set_name LIKE '%" . $conn->real_escape_string($set_name) . "%'";
+        }
+        if ($set_brand_id) {
+            $sql .= " AND set_brand_id = '" . $conn->real_escape_string($set_brand_id) . "'";
+        }
+        if ($set_age) {
+            $sql .= " AND set_age = '" . $conn->real_escape_string($set_age) . "'";
+        }
+        if ($set_price) {
+            $sql .= " AND set_price <= '" . $conn->real_escape_string($set_price) . "'";
+        }
+
+        // Execute the query
+        $result = $conn->query($sql);
+
+        $sets = [];
+
+        // Fetch results and populate the array
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $set = new set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_description'];
+                $set->brandId = $row['set_brand_id'];
+                $set->themeId = $row['set_theme_id'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+                $sets[] = $set;
+            }
+        }
+
+        $conn->close();
+        return $sets;
+    }
 }
