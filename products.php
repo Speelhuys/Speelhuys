@@ -90,7 +90,7 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
     </div>
 
     <!-- Sidebar filter bar -->
-    <div class="filter-bar">
+    <div class="filter-bar" style="height: 100%;">
       <h3>Filters</h3>
       <form action="products.php" method="GET">
         <div class="mb-3">
