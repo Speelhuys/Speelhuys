@@ -1,5 +1,5 @@
 <?php
-//hier include ik classes om verschilende functies uit te voeren
+// Include classes for different functionalities
 include "../classes/database.php";
 include "../Classes/set.php";
 include "../Classes/session.php";
@@ -8,7 +8,16 @@ $image = null;
 
 $Session = Session::findActiveSession();
 
-if ($Session = null) {
+if (isset($_POST['logout'])) {
+    header("location: ../index.php");
+    exit;
+}
+if (isset($_POST['watch'])){
+    header("location: ../products.php");
+    exit;
+}
+
+if ($Session == null) { // Corrected comparison operator
 
     header("location: ../index.php");
     exit;
@@ -16,42 +25,37 @@ if ($Session = null) {
 
 if (isset($_POST["plaats"])) {
 
-    if (!empty($_FILES["image"]["name"])) {
-        $image = $_FILES["image"]["name"];
+    if (!empty($_FILES["afbeelding"]["name"])) {
+        $image = $_FILES["afbeelding"]["name"];
 
         $target = "../upload/" . basename($image);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target);
+        move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $target);
     }
 
-    $set = new set();
-    $set->image = $image;
-    $set = new set();
+    $set = new Set();
     $set->id = $_POST['set_id'];
-    $set->name = $_POST['set_name'];
-    $set->description = $_POST['set_category'];
-    $set->brandId = $_POST['set_price'];
-    $set->themeId = $_POST['set_themeId'];
-    $set->image = $_POST['set_image'];
-    $set->price = $_POST['set_price'];
-    $set->age = $_POST['set_age'];
-    $set->pieces = $_POST['set_pieces'];
-    $set->stock = $_POST['set_stock'];
+    $set->name = $_POST['name'];
+    $set->description = $_POST['description'];
+    $set->brandId = $_POST['brandId'];
+    $set->themeId = $_POST['themeId'];
+    $set->price = $_POST['price'];
+    $set->age = $_POST['age'];
+    $set->pieces = $_POST['pieces'];
+    $set->stock = $_POST['stock'];
+    $set->image = $image; // Corrected to use uploaded image
     $set->insert();
 
     header("location: admin.php");
+    exit;
 }
-
-
 ?>
-
-
 
 <html>
 
 <head>
     <title>Plaats blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Css/admin.css">
+    <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="../CSS/jquery-te-1.4.0.css">
 </head>
 
@@ -59,113 +63,95 @@ if (isset($_POST["plaats"])) {
     <div class="container-fluid text-center">
         <div class="row align-items-start" id="rowTop">
             <div class="col text-left">
-                <input type="button" id="bekijk" name="watch" value="watch">
+                <form method="post">
+                    <input type="submit" id="watch" name="watch" value="watch">
+                </form>
             </div>
             <div class="col">
                 <center>
-                    <h1 id="welkom"> Welkom </h1>
+                    <h1 id="welkom">Welkom</h1>
                 </center>
             </div>
-            <div class="col text-right">
-                <input type="button" id="logout" name="logout" value="Uitloggen">
-            </div>
+            <form method="post">
+                <div class="col text-right">
+                    <input type="submit" id="logout" name="logout" value="Uitloggen">
+                </div>
+            </form>
         </div>
+
         <form method="post" enctype="multipart/form-data">
             <div class="row align-items-start" id="rowMid">
                 <div class="col">
-                    <div class="row-2">
-                        <div class="col-4">
-                            <p id="colour">Voer de naam in</p>
-                        </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="name">Voer de naam in</label>
                         <div class="col-8">
-                            <input type="text" id="name" name="name" placeholder="voer de naam in in">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Voer de naam in">
                         </div>
                     </div>
-                    <div class="row-2">
-                        <div class="col-4">
-                            <p id="kleur">Voer beschrijving in</p>
-                        </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
                         <div class="col-8">
-                            <input type="text" id="description" name="description" placeholder="Voer beschrijving in">
+                            <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Voer brand id in">
                         </div>
-                        <div class="row-2">
-                            <div class="col-4">
-                                <p id="kleur">Voer bran id in</p>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" id="brandId" name="brandId" placeholder="Voer Brand id in">
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="themeId">Voer theme id in</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="themeId" name="themeId" placeholder="Voer theme id in">
                         </div>
-                        <div class="row-2">
-                            <div class="col-4">
-                                <p id="kleur">Voer theme id in</p>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" id="ThemeId" name="themeId" placeholder="Voer theme id in">
-                            </div>
-                            <div class="row-2">
-                                <div class="col-4">
-                                    <p id="kleur">Voer prijs in</p>
-                                </div>
-                                <div class="col-8">
-                                    <input type="text" id="price" name="price" placeholder="Voer prijs  in">
-                                </div>
-                                <div class="row-2">
-                                    <div class="col-4">
-                                        <p id="kleur">Voer leeftijd in</p>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="text" id="age" name="age" placeholder="Voer leeftijd in">
-                                    </div>
-                                    <div class="row-2">
-                                        <div class="col-4">
-                                            <p id="kleur">Voer aantal stenen in</p>
-                                        </div>
-                                        <div class="col-8">
-                                            <input type="text" id="pieces" name="pieces" placeholder="Voer aantal in">
-                                        </div>
-                                        <div class="row-2">
-                                            <div class="col-4">
-                                                <p id="kleur">Voer vorraad in</p>
-                                            </div>
-                                            <div class="col-8">
-                                                <input type="text" id="stock" name="stock" placeholder="Voer voorraad in">
-                                            </div>
-
-                                            <div class="row-2">
-                                                <div class="col-4">
-                                                    <p id="kleur">Voeg afbeelding toe</p>
-                                                </div>
-                                                <div class="col-8">
-                                                    <input type="file" id="afbeelding" name="afbeelding" placeholder="voeg afbeelding toe">
-                                                </div>
-                                            </div>
-
-                                            <div class="row-2">
-                                                <div class="col-8">
-                                                </div>
-                                                <div class="col-8">
-                                                    <input type="submit" id="plaats" name="plaats" value="Plaats blog">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row-2">
-                                            <div class="col-12">
-                                                <textarea class="jqte" id="content" name="content" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="price">Voer prijs in</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="Voer prijs in">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="age">Voer leeftijd in</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="age" name="age" placeholder="Voer leeftijd in">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="pieces">Voer aantal stenen in</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="pieces" name="pieces" placeholder="Voer aantal in">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="stock">Voer voorraad in</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="stock" name="stock" placeholder="Voer voorraad in">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
+                        <div class="col-8">
+                            <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-8">
+                            <input type="submit" class="btn btn-primary" id="plaats" name="plaats" value="Plaats blog">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <textarea class="jqte" id="content" name="content" style="width: 100%;" required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
+    </div>
 </body>
-<footer>
-
-</footer>
+<footer></footer>
 
 </html>
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="uft-8"></script>
-<script type="text/javascript" src="../js/jquery-te-1.4.0.min.js" charset="uft-8"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.cs"></script>
+<script src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
+<script src="../js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     $('.jqte').jqte();
