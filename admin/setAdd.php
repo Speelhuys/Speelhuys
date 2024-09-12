@@ -68,12 +68,6 @@ if (isset($_POST["plaats"])) {
                 </form>
             </div>
             <div class="col">
-                <div class="row align-items-start" id="rowMid">
-                    <center>
-                        <h1 id="welkom">Welkom</h1>
-                    </center>
-                </div>
-            </div>
             <form method="post">
                 <div class="col text-right">
                     <input type="submit" id="logout" name="logout" value="Uitloggen">
@@ -143,12 +137,12 @@ if (isset($_POST["plaats"])) {
             </div>
             <div class="form-group row">
                 <div class="col-8">
-                        <center>
-                            <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
-                        </center>
-                    </div>
+                    <center>
+                        <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
+                    </center>
                 </div>
             </div>
+    </div>
     </div>
     </form>
     </div>
