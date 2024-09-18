@@ -67,88 +67,86 @@ if (isset($_POST["plaats"])) {
                     <input type="submit" id="watch" name="watch" value="watch">
                 </form>
             </div>
+            <center>
+                <h1> welkom </h1>
+            </center>
             <div class="col">
-                <div class="row align-items-start" id="rowMid">
-                    <center>
-                        <h1 id="welkom">Welkom</h1>
-                    </center>
-                </div>
+                <form method="post">
+                    <div class="col text-right">
+                        <input type="submit" id="logout" name="logout" value="Uitloggen">
+                    </div>
+                </form>
             </div>
-            <form method="post">
-                <div class="col text-right">
-                    <input type="submit" id="logout" name="logout" value="Uitloggen">
-                </div>
-            </form>
         </div>
+            <form method="post" enctype="multipart/form-data">
+                <div class="row align-items-start" id="rowMid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="name">Voer de naam in</label>
 
-        <form method="post" enctype="multipart/form-data">
-            <div class="row align-items-start" id="rowMid">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="name">Voer de naam in</label>
+                                    <input type="text" class="form-control" style="width: 30%;" id="name" name="name" placeholder="Voer de naam in">
 
-                                <input type="text" class="form-control" style="width: 30%;" id="name" name="name" placeholder="Voer de naam in">
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
 
+                                    <input type="text" class="form-control" style="width: 30%;" id="brandId" name="brandId" placeholder="Voer brand id in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="themeId">Voer theme id in</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="themeId" name="themeId" placeholder="Voer theme id in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="price">Voer prijs in</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="price" name="price" placeholder="Voer prijs in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="age">Voer leeftijd in</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="age" name="age" placeholder="Voer leeftijd in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="pieces">Voer aantal stenen in</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="pieces" name="pieces" placeholder="Voer aantal in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="stock">Voer voorraad in</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="stock" name="stock" placeholder="Voer voorraad in">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
+
+                                    <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
+
+                                </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="brandId" name="brandId" placeholder="Voer brand id in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="themeId">Voer theme id in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="themeId" name="themeId" placeholder="Voer theme id in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="price">Voer prijs in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="price" name="price" placeholder="Voer prijs in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="age">Voer leeftijd in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="age" name="age" placeholder="Voer leeftijd in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="pieces">Voer aantal stenen in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="pieces" name="pieces" placeholder="Voer aantal in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="stock">Voer voorraad in</label>
-
-                                <input type="text" class="form-control" style="width: 30%;" id="stock" name="stock" placeholder="Voer voorraad in">
-
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
-
-                                <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
-
-                            </div>
-                        </div>
-                        <div class="col-6">
+                            <div class="col-6">
                             <textarea class="jqte" id="content" name="content" style="width: 70%;" required></textarea>
                         </div>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
+                                </div>
+                            </div>
+                        </div>
+                        
+
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-8">
-                        <center>
-                            <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
-                        </center>
-                    </div>
-                </div>
-            </div>
+
+        </div>
     </div>
     </form>
     </div>
