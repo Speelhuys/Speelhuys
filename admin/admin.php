@@ -41,7 +41,7 @@ if (isset($_POST['btnAdd'])) {
                 $sets = $set->getSets();
 
                 foreach ($sets as $set) {
-                    echo '<div class="col-4" id="afstand"><label>' . $set->name . '</label></div>';
+                    echo '<div class="col-4" id="afstand"><label>' . $set->name . '</label><a href="setEdit.php?id='. $set->id .'">Edit</a></div>';
                 } ?>
             </div>
         </div>

@@ -56,9 +56,9 @@ class set
                 $set = new set();
                 $set->id = $row['set_id'];
                 $set->name = $row['set_name'];
-                $set->description = $row['set_category'];
+                $set->description = $row['set_description'];
                 $set->brandId = $row['set_price'];
-                $set->themeId = $row['set_themeId'];
+                $set->themeId = $row['set_theme_id'];
                 $set->image = $row['set_image'];
                 $set->price = $row['set_price'];
                 $set->age = $row['set_age'];
