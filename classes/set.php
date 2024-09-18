@@ -146,7 +146,6 @@ class set
     {
         $conn = database::start();
 
-        // Start the query
         $sql = "SELECT * FROM sets WHERE 1=1";
 
         // Apply filters dynamically
