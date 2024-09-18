@@ -9,14 +9,15 @@ $brands = $brand->getBrands();
 $theme = new theme;
 $themes = $theme->getThemes();
 // Get filters from the form
-$set_id = isset($_GET['set_id']) ? $_GET['set_id'] : '';
-$set_name = isset($_GET['set_name']) ? $_GET['set_name'] : '';
-$set_brand_id = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
-$set_age = isset($_GET['set_age']) ? $_GET['set_age'] : '';
-$set_price = isset($_GET['set_price']) ? $_GET['set_price'] : '';
+$id = isset($_GET['set_id']) ? $_GET['set_id'] : '';
+$name = isset($_GET['set_search']) ? $_GET['set_search'] : '';
+$brandid = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
+$themeid = isset($_GET['set_theme_id']) ? $_GET['set_theme_id'] : '';
+$age = isset($_GET['set_age']) ? $_GET['set_age'] : '';
+$price = isset($_GET['set_price']) ? $_GET['set_price'] : '';
 
 // Fetch the filtered sets using the `filterSets` method
-$sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price);
+$sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +51,7 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
   </style>
 </head>
 
-<body>
-
+<body style="background-image: url(images/brickwall.png);">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
       <div class="col-1">
@@ -70,15 +70,12 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
     </div>
   </nav>
 
-  <div class="container-fluid" style="background-image: url(images/brickwall.png);">
-    <div class="mb-3">
-      <label for="set_id" class="form-label">Search bar</label>
-      <input type="text" name="searchBar" class="form-control" style="width: 70%;">
-    </div>
+  <div class="container-fluid">
+    <h3 style="color: limegreen;">Producten</h3>
+    <br />
     <div class="row">
       <!-- Main content (Products) -->
       <div class="content col-md-9">
-        <h3>Products</h3>
         <div class="row">
           <?php if (count($sets) > 0) : ?>
             <?php foreach ($sets as $set) : ?>
@@ -108,6 +105,9 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
       <h3>Filters</h3>
       <form action="products.php" method="GET">
         <div class="mb-3">
+          <input type="text" name="set_search" class="form-control" placeholder="Typ hier uw zoekopdracht in">
+        </div>
+        <div class="mb-3">
           <strong><label for="set_brand_id" class="form-label">Merk</label></strong>
           <select name="set_brand_id" class="form-control" style="color:darkblue">
             <option value="">Alle Merken</option>
@@ -119,27 +119,28 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
           </select>
         </div>
         <div class="mb-3">
-          <strong><label for="set_brand_id" class="form-label">Thema</label></strong>
-          <select name="set_brand_id" class="form-control" style="color:darkred">
+          <strong><label for="set_theme_id" class="form-label">Thema</label></strong>
+          <select name="set_theme_id" class="form-control" style="color:darkred">
             <option value="">Alle Themas</option>
             <?php
+
             foreach ($themes as $theme) {
               echo '<option value="' . $theme->id . '">' . $theme->name . '</option>';
             }
             ?>
           </select>
         </div>
-        <strong><label for="set_age" class="form-label">Leeftijd</label></strong>
+        <strong><label for="set_age" class="form-label">Minimum Leeftijd</label></strong>
         <div class="slidecontainer">
-          <input type="range" name="set_age" min="0" max="10" value="5" class="slider" id="ageRange">
-          <p style="text-align: center;"><span id="ageValue">5</span></p>
+          <input type="range" name="set_age" min="1" max="8" value="1" class="slider" id="ageRange">
+          <p style="text-align: center;"><span id="ageValue"></span></p>
         </div>
         <div class="mb-3">
           <strong><label for="set_price" class="form-label" style="background-color: transparent;">Max Price (€)</label></strong>
-          <input type="number" step="0.01" name="set_price" class="form-control">
+          <input type="number" step="0.01" name="set_price" class="form-control" placeholder="">
         </div>
         <br />
-        <button type="submit" class="btn btn-primary">Filter</button>
+        <button type="submit" class="btn btn-primary">Zoeken!</button>
       </form>
     </div>
 
