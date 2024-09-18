@@ -88,6 +88,7 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
         <?php endif; ?>
       </div>
     </div>
+    </div>
 
     <!-- Sidebar filter bar -->
     <div class="filter-bar" style="height: 100%;">
@@ -127,7 +128,6 @@ $sets = set::filterSets($set_id, $set_name, $set_brand_id, $set_age, $set_price)
       </form>
     </div>
 
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
