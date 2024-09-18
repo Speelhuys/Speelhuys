@@ -142,13 +142,12 @@ class set
         $conn->query($sql);
         $conn->close();
     }
-    public static function filterSets($set_id = '', $set_name = '', $set_brand_id = '', $set_age = '', $set_price = '')
+    public static function filterSets($id, $name, $brandid, $age, $price)
     {
         $conn = database::start();
 
         $sql = "SELECT * FROM sets WHERE 1=1";
 
-        // Apply filters dynamically
         if ($set_id) {
             $sql .= " AND set_id = '" . $conn->real_escape_string($set_id) . "'";
         }
