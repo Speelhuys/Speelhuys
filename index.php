@@ -6,12 +6,14 @@ require "classes/user.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Garage</title>
 </head>
+
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="col-1"><img src="images/error.png" style="height: 100%; width: 100%;"></div> 
@@ -34,9 +36,11 @@ require "classes/user.php";
         </ul>
       </div>
   </nav>
-  <div class="container-fluid your-class">
+  
+  <div class="container-fluid your-class" id="your-class">
     <div class="content">
     <h1 class="neonText" style="text-align: center;">Welkom!</h1>
+    <h5 class="neonText" style="text-align: center;"> </br> dit is onze startpagina <br></br> links boven ziet u uw navigatie opties. hiermee kunt u navigeren door onze site. </h5>
      </div>
   </div>
 </div>
