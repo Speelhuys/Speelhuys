@@ -1,19 +1,21 @@
 <?php
-//hier include je classes om verschilende functies uit te voeren
+// Include de benodigde classes voor functies
 require "classes/session.php";
 require "classes/user.php";
 require "classes/database.php";
+
 $divError = null;
 if (isset($_GET["message"])) {
   $_GET["message"];
 }
+
 if (isset($_POST["submit"])) {
   $user = user::validateUser($_POST["username"], $_POST["password"]);
   if ($user == null) {
-    //hier wordt een foutmelding aan het variabel gebonden in het geval dat de gegevens niet correct zijn
-    $divError = '<br /><img src="images/error.png" width="20px" height="20px">Voer geldige gegevens in!</img>';
+    // Foutmelding als de inloggegevens onjuist zijn
+    $divError = '<div class="error-message"><img src="images/error.png" alt="error" />Voer geldige gegevens in!</div>';
   } else {
-    //hier wordt een nieuwe sessie gecreërd
+    // Nieuwe sessie aanmaken
     $key = md5(uniqid(rand(), true));
     $session = new Session();
     $session->userId = $user->id;
@@ -25,24 +27,95 @@ if (isset($_POST["submit"])) {
     header("Location: admin/admin.php");
   }
 }
-
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="nl">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background-image: url('images/background.jpg'); /* Voeg een mooie achtergrondafbeelding toe */
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .login-container input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-container input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-message img {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 </head>
 
-<body style="background-image: url();"> <!-- hier nog een achtergrondplaatje (tenzij we gewoon een kleur doen) -->
-  <h1 style="text-align:center;"><strong>Welkom</strong></h1>
-  <div style="text-align:center;">
-    <br />
+<body>
+  <div class="login-container">
+    <h1><strong>Welkom</strong></h1>
     <form method="post">
-      <strong>Gebruikersnaam:</strong> <br /><input type="text" name="username" value="" required><br /><br /><br />
-      <strong>Wachtwoord:</strong> <br /><input type="password" name="password" value="" required><br /><br />
-      <input type="submit" name="submit" value="Login" style="width: 100px;">
+      <label for="username"><strong>Gebruikersnaam:</strong></label>
+      <input type="text" name="username" id="username" value="" required>
+
+      <label for="password"><strong>Wachtwoord:</strong></label>
+      <input type="password" name="password" id="password" value="" required>
+
+      <input type="submit" name="submit" value="Login">
       <?php echo $divError; ?>
     </form>
   </div>
