@@ -52,22 +52,24 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
 </head>
 
 <body style="background-image: url(images/brickwall.png);">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <div class="col-1">
-        <img src="images/error.png" style="height: 100%; width: 100%;">
-      </div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="col-2"><img src="images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div> 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.php">Producten</a></li>
-          <li class="nav-item"><a class="nav-link" href="loginpage.php">Inloggen</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Producten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="loginpage.php">Inloggen</a>
+          </li>
         </ul>
       </div>
-    </div>
   </nav>
 
   <div class="container-fluid">
