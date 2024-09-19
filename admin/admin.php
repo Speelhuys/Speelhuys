@@ -74,7 +74,7 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
         <h1 style="text-align: center;" class="neonText">Welkom <?php echo $user->firstname .' '. $user->lastname;?></h1>
         <br />
         <div class="mb-3">
-            <form method="POST" action="setAdd.php"><button style="margin-left: 44%;" type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
+            <form method="POST" action="setAdd.php"><button style="margin-left: 43%;" type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
             <br />
         </div>
         <div class="row">
