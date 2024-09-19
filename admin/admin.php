@@ -94,10 +94,10 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
                                         <p><strong>Stukken: </strong><?php echo $set->pieces; ?></p>
                                         <p><strong>Voorraad: </strong><?php echo $set->stock; ?></p>
                                         <br />
-                                        <a href="setEdit.php?id= <?php echo $set->id; ?>">Edit</a>
+                                        <a href="setEdit.php?id=<?php echo $set->id; ?>">Edit</a>
                                         <?php
                                         if ($user->role == "admin") {
-                                            echo '<a href="setDelete.php?id= <?php echo $set->id; ?>" style="color: red; float: right;">Delete</a>';
+                                            echo '<a href="setDelete.php?id='. $set->id .'" style="color: red; float: right;">Delete</a>';
                                         }
                                         ?>
                                     </div>
