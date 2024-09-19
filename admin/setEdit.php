@@ -43,11 +43,11 @@ if ($Session == null) {
 
 if (isset($_POST["plaats"])) {
 
-    if (!empty($_FILES["afbeelding"]["name"])) {
-        $image = $_FILES["afbeelding"]["name"];
+    if (!empty($_FILES["image"]["name"])) {
+        $image = $_FILES["image"]["name"];
 
-        $target = "../upload/" . basename($image);
-        move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $target);
+        $target = "../image/sets/" . basename($image);
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target);
     }
 }
 ?>
