@@ -78,7 +78,7 @@ if (isset($_POST["plaats"])) {
                 </form>
             </div>
         </div>
-            <form method="post" enctype="multipart/form-data">
+            <strong><form method="post" enctype="multipart/form-data" style="color:white;">
                 <div class="row align-items-start" id="rowMid">
                     <div class="container">
                         <div class="row">
@@ -148,7 +148,7 @@ if (isset($_POST["plaats"])) {
 
         </div>
     </div>
-    </form>
+    </form></strong>
     </div>
 </body>
 <footer></footer>
