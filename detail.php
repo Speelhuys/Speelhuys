@@ -90,7 +90,6 @@ if ($set == null) {
 
                     <div class="row brand-theme mt-4">
                         <div class="col-md-6">
-                            <h1>Brand: <?php echo $set->brandId; ?></h1>
                         </div>
                         <div class="col-md-6">
                             <h1>Theme: <?php echo $set->themeId; ?></h1>
