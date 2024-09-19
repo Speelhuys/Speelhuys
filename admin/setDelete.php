@@ -1,8 +1,8 @@
 <?php
 
 include "../Classes/database.php";
-include "../Classes/blog.php";
-include "../Classes/sessie.php";
+include "../Classes/set.php";
+include "../Classes/session.php";
 
 
 $Session = Session::findActiveSession();
