@@ -72,7 +72,7 @@ if ($set == null) {
     </style>
 </head>
 
-<body id="detail">
+<body id="detail" style="background-image: url(images/waves.png); background-repeat: no-repeat; background-size: cover; background-position: center top; ">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
