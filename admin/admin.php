@@ -55,7 +55,7 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
     </style>
 </head>
 
-<body style="background-image: url(../images/brickwall.png); background-position: fixed; background-size: 100%;">
+<body style="background-image: url(../images/background.png); background-attachment: fixed; background-size: 100%;">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="col-2"><img src="../images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -71,10 +71,10 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
     </nav>
 
     <div class="container-fluid">
-        <h1 class="neonText">Welkom <?php echo $user->firstname;?></h1>
+        <h1 style="text-align: center;" class="neonText">Welkom <?php echo $user->firstname .' '. $user->lastname;?></h1>
         <br />
         <div class="mb-3">
-            <form method="POST" action="setAdd.php"><button type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
+            <form method="POST" action="setAdd.php"><button style="margin-left: 44%;" type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
             <br />
         </div>
         <div class="row">
