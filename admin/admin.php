@@ -1,12 +1,13 @@
 <?php
 require "../classes/database.php"; // assuming this handles DB connection
 require "../classes/user.php";
+require "../classes/session.php";
 require "../classes/set.php";
 require "../classes/brand.php";
 require "../classes/theme.php";
 
-$userid = $_GET['userid'];
-$user = user::findById($userid);
+$session = session::findActiveSession();
+$user = user::findById($session->userId);
 $brand = new brand;
 $brands = $brand->getBrands();
 $theme = new theme;
@@ -65,11 +66,6 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
             </button>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
-                    <?php
-                    if ($user->role == "admin") {
-                        echo '<li class="nav-item"><a class="nav-link" href="rights.php">Rechtenbeheer</a></li>';
-                    }
-                    ?>
                     <li class="nav-item"><a class="nav-link" href="../index.php">Uitloggen</a></li>
                 </ul>
             </div>

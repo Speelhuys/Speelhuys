@@ -81,14 +81,14 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
             <?php foreach ($sets as $set) : ?>
               <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                  <img src="images/<?php echo $set->image; ?>" class="card-img-top" alt="<?php echo $set->name; ?>">
+                  <img src="images/sets/<?php echo $set->image; ?>" class="card-img-top" alt="<?php echo $set->name; ?>">
                   <div class="card-body">
                     <h5 class="card-title"><?php echo $set->name; ?></h5>
                     <p class="card-text"><?php echo $set->description; ?></p>
-                    <p><strong>Price: </strong>€<?php echo number_format($set->price, 2); ?></p>
-                    <p><strong>Age: </strong><?php echo $set->age; ?>+</p>
-                    <p><strong>Pieces: </strong><?php echo $set->pieces; ?></p>
-                    <p><strong>Stock: </strong><?php echo $set->stock; ?></p>
+                    <p><strong>Prijs: </strong>€<?php echo number_format($set->price, 2); ?></p>
+                    <p><strong>Leeftijd: </strong><?php echo $set->age; ?>+</p>
+                    <p><strong>Stukken: </strong><?php echo $set->pieces; ?></p>
+                    <p><strong>Voorraad: </strong><?php echo $set->stock; ?></p>
                   </div>
                 </div>
               </div>
