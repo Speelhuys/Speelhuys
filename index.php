@@ -73,7 +73,7 @@ require "classes/user.php";
             <a href="products.php"> <img src="images/uniek.jpeg" class="card-img-top" alt="Bouwspeelgoed Collectie"></a>
             <div class="card-body">
               <h5 class="card-title">Uniek Bouwspeelgoed</h5>
-              <p class="card-text">Naast LEGO en DUPLO bieden wij ook andere unieke bouwsets en accessoires.</p>
+              <p class="card-text">Naast LEGO en DUPLO bieden wij ook andere unieke bouwsets en accessoires, bekijk alles bij onze producten!</p>
             </div>
           </div>
         </div>
