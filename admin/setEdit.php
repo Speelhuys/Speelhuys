@@ -122,7 +122,7 @@ if (isset($_POST["plaats"])) {
 
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-4 col-form-label" for="stock"value="<?php echo $set->stock ?>">Voer voorraad in</label>
+                                    <label class="col-4 col-form-label" for="stock"value="<?php  $set->stock ?>">Voer voorraad in</label>
 
                                     <input type="text" class="form-control" style="width: 30%;" id="stock" name="stock" placeholder="Voer voorraad in">
 

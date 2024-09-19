@@ -91,6 +91,12 @@ if (isset($_POST["plaats"])) {
 
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-4 col-form-label" for="name">beschrijving</label>
+
+                                    <input type="text" class="form-control" style="width: 30%;" id="description" name="description" placeholder="Voer de beschrijving in">
+
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-4 col-form-label" for="brandId">Voer brand id in</label>
 
                                     <input type="text" class="form-control" style="width: 30%;" id="brandId" name="brandId" placeholder="Voer brand id in">

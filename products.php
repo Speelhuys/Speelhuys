@@ -107,6 +107,7 @@ $sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
                     <p><strong>Leeftijd: </strong><?php echo $set->age; ?>+</p>
                     <p><strong>Stukken: </strong><?php echo $set->pieces; ?></p>
                     <p><strong>Voorraad: </strong><?php echo $set->stock; ?></p>
+                    <a href="detail.php?id=<?php echo $set->id; ?>">Details</a>
                   </div>
                 </div>
               </div>
