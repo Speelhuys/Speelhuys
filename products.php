@@ -51,7 +51,7 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
   </style>
 </head>
 
-<body style="background-image: url(images/brickwall.png);">
+<body style="background-image: url(images/brickwall.png); background-attachment: fixed;">
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="col-2"><img src="images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div> 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
