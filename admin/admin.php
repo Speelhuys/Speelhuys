@@ -56,25 +56,25 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
 </head>
 
 <body style="background-image: url(../images/brickwall.png); background-position: fixed; background-size: 100%;">
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <div class="col-2"><img src="../images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div> 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.php">Uitloggen</a>
-          </li>
-        </ul>
-      </div>
-  </nav>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="col-2"><img src="../images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.php">Uitloggen</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container-fluid">
-        <h3 style="color: limegreen;">Admin</h3>
+        <h1 class="neonText">Welkom <?php echo $user->firstname;?></h1>
         <br />
         <div class="mb-3">
-                <form method="POST" action="setAdd.php"><button type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
+            <form method="POST" action="setAdd.php"><button type="submit" class="btn btn-primary">Maak een nieuwe blog</button></form>
             <br />
         </div>
         <div class="row">
@@ -113,47 +113,47 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
 
         <!-- Sidebar filter bar -->
         <div class="filter-bar" style="height: 100%; background-image: url(images/brick.png);">
-      <h3>Filters</h3>
-      <form action="admin.php" method="GET">
-        <div class="mb-3">
-          <input type="text" name="set_search" class="form-control" placeholder="Typ hier uw zoekopdracht in">
-        </div>
-        <div class="mb-3">
-          <strong><label for="set_brand_id" class="form-label">Merk</label></strong>
-          <select name="set_brand_id" class="form-control" style="color:darkblue">
-            <option value="">Alle Merken</option>
-            <?php
-            foreach ($brands as $brand) {
-              echo '<option value="' . $brand->id . '">' . $brand->name . '</option>';
-            }
-            ?>
-          </select>
-        </div>
-        <div class="mb-3">
-          <strong><label for="set_theme_id" class="form-label">Thema</label></strong>
-          <select name="set_theme_id" class="form-control" style="color:darkred">
-            <option value="">Alle Themas</option>
-            <?php
+            <h3>Filters</h3>
+            <form action="admin.php" method="GET">
+                <div class="mb-3">
+                    <input type="text" name="set_search" class="form-control" placeholder="Typ hier uw zoekopdracht in">
+                </div>
+                <div class="mb-3">
+                    <strong><label for="set_brand_id" class="form-label">Merk</label></strong>
+                    <select name="set_brand_id" class="form-control" style="color:darkblue">
+                        <option value="">Alle Merken</option>
+                        <?php
+                        foreach ($brands as $brand) {
+                            echo '<option value="' . $brand->id . '">' . $brand->name . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <strong><label for="set_theme_id" class="form-label">Thema</label></strong>
+                    <select name="set_theme_id" class="form-control" style="color:darkred">
+                        <option value="">Alle Themas</option>
+                        <?php
 
-            foreach ($themes as $theme) {
-              echo '<option value="' . $theme->id . '">' . $theme->name . '</option>';
-            }
-            ?>
-          </select>
+                        foreach ($themes as $theme) {
+                            echo '<option value="' . $theme->id . '">' . $theme->name . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <strong><label for="set_age" class="form-label">Minimum Leeftijd</label></strong>
+                <div class="slidecontainer">
+                    <input type="range" name="set_age" min="1" max="8" value="1" class="slider" id="ageRange">
+                    <p style="text-align: center;"><span id="ageValue"></span></p>
+                </div>
+                <div class="mb-3">
+                    <strong><label for="set_price" class="form-label" style="background-color: transparent;">Max Price (€)</label></strong>
+                    <input type="number" step="0.01" name="set_price" class="form-control" placeholder="">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Zoeken!</button>
+            </form>
         </div>
-        <strong><label for="set_age" class="form-label">Minimum Leeftijd</label></strong>
-        <div class="slidecontainer">
-          <input type="range" name="set_age" min="1" max="8" value="1" class="slider" id="ageRange">
-          <p style="text-align: center;"><span id="ageValue"></span></p>
-        </div>
-        <div class="mb-3">
-          <strong><label for="set_price" class="form-label" style="background-color: transparent;">Max Price (€)</label></strong>
-          <input type="number" step="0.01" name="set_price" class="form-control" placeholder="">
-        </div>
-        <br />
-        <button type="submit" class="btn btn-primary">Zoeken!</button>
-      </form>
-    </div>
 
     </div>
 
