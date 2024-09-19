@@ -64,7 +64,6 @@ class set
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
                 $set->stock = $row['set_stock'];
-
             }
         }
         $conn->close();
@@ -142,34 +141,45 @@ class set
         $conn->query($sql);
         $conn->close();
     }
-    public static function filterSets($id, $name, $brandid, $age, $price)
+    public static function filterSets($id, $name, $brandid, $themeid, $age, $price)
     {
+
         $conn = database::start();
+
+
+        $id = $conn->real_escape_string($id);
+        $name = $conn->real_escape_string($name);
+        $brandid = $conn->real_escape_string($brandid);
+        $themeid = $conn->real_escape_string($themeid);
+        $age = $conn->real_escape_string($age);
+        $price = $conn->real_escape_string($price);
 
         $sql = "SELECT * FROM sets WHERE 1=1";
 
-        if ($set_id) {
-            $sql .= " AND set_id = '" . $conn->real_escape_string($set_id) . "'";
+        if (!empty($id)) {
+            $sql .= " AND set_id = '$id'";
         }
-        if ($set_name) {
-            $sql .= " AND set_name LIKE '%" . $conn->real_escape_string($set_name) . "%'";
+        if (!empty($name)) {
+            $sql .= " AND set_name LIKE '%$name%'";
         }
-        if ($set_brand_id) {
-            $sql .= " AND set_brand_id = '" . $conn->real_escape_string($set_brand_id) . "'";
+        if (!empty($brandid)) {
+            $sql .= " AND set_brand_id = '$brandid'";
         }
-        if ($set_age) {
-            $sql .= " AND set_age = '" . $conn->real_escape_string($set_age) . "'";
+        if (!empty($themeid)) {
+            $sql .= " AND set_theme_id = '$themeid'";
         }
-        if ($set_price) {
-            $sql .= " AND set_price <= '" . $conn->real_escape_string($set_price) . "'";
+        if (!empty($age)) {
+            $sql .= " AND set_age >= '$age'";
+        }
+        if (!empty($price)) {
+            $sql .= " AND set_price <= '$price'";
         }
 
-        // Execute the query
+
         $result = $conn->query($sql);
 
         $sets = [];
 
-        // Fetch results and populate the array
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $set = new set();
@@ -187,7 +197,10 @@ class set
             }
         }
 
+        // Close the connection
         $conn->close();
+
+        // Return the results
         return $sets;
     }
 }

@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
     $session->end = date("Y-m-d H:i:s", strtotime("+1 month"));
     setcookie("speelhuys-session", $key, strtotime("+1 month"), "/");
     $session->insert();
-    header("Location: admin/admin.php");
+    header("Location: admin/admin.php?userid=$user->id");
   }
 }
 ?>
