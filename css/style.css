@@ -35,3 +35,23 @@
     background: #04AA6D;
     cursor: pointer;
   } 
+  label {
+    font-family: sans-serif;
+    background-color: transparent;
+    color: darkred;
+  }
+  
+  label {
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+                 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  }
+  h1 {
+    font-family: sans-serif;
+    background-color: transparent;
+    color: darkred;
+  }
+  
+  h1 {
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+                 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  }
