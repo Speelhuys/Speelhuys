@@ -25,11 +25,11 @@ if ($Session == null) { // Corrected comparison operator
 
 if (isset($_POST["plaats"])) {
 
-    if (!empty($_FILES["afbeelding"]["name"])) {
-        $image = $_FILES["afbeelding"]["name"];
+    if (!empty($_FILES["image"]["name"])) {
+        $image = $_FILES["image"]["name"];
 
-        $target = "../upload/" . basename($image);
-        move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $target);
+        $target = "../images/sets/" . basename($image);
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target);
     }
 
     $set = new Set();
@@ -78,7 +78,8 @@ if (isset($_POST["plaats"])) {
                 </form>
             </div>
         </div>
-            <strong><form method="post" enctype="multipart/form-data" style="color:white;">
+        <strong>
+            <form method="post" enctype="multipart/form-data" style="color:white;">
                 <div class="row align-items-start" id="rowMid">
                     <div class="container">
                         <div class="row">
@@ -126,27 +127,24 @@ if (isset($_POST["plaats"])) {
 
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-4 col-form-label" for="afbeelding">Voeg afbeelding toe</label>
-
-                                    <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
-
+                                    <input type="file" id="image" name="image" placeholder="voeg afbeelding toe">
                                 </div>
                             </div>
                             <div class="col-6">
-                            <textarea class="jqte" id="content" name="content" style="width: 70%;" required></textarea>
-                        </div>
+                                <textarea class="jqte" id="content" name="content" required></textarea>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-6">
                                     <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
                                 </div>
                             </div>
                         </div>
-                        
+
 
                     </div>
                 </div>
 
-        </div>
+    </div>
     </div>
     </form></strong>
     </div>
