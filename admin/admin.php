@@ -97,7 +97,11 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
                                         <a href="setEdit.php?id=<?php echo $set->id; ?>">Edit</a>
                                         <?php
                                         if ($user->role == "admin") {
-                                            echo '<a href="setDelete.php?id='. $set->id .'" style="color: red; float: right;">Delete</a>';
+                                            echo '<a href="setDelete.php?id='. $set->id .'" onclick=';
+                                            echo "'";
+                                            echo 'return confirm("Weet u zeker dat u het product wilt verwijderen?")';
+                                            echo "'";
+                                            echo ' style="color: red; float: right;">Delete</a>';
                                         }
                                         ?>
                                     </div>
