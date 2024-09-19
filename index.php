@@ -52,7 +52,7 @@ require "classes/user.php";
       <div class="row">
         <div class="col-md-4">
           <div class="card feature-card">
-            <a href="products.php"> <img src="images/lego.jpeg" class="card-img-top" alt="LEGO Bouwsets"></a>
+            <a href="products.php?legoId=1"> <img src="images/lego.jpeg" class="card-img-top" alt="LEGO Bouwsets"></a>
             <div class="card-body">
               <h5 class="card-title">LEGO Bouwsets</h5>
               <p class="card-text">Verken onze uitgebreide collectie LEGO-sets voor bouwers van alle leeftijden.</p>
@@ -61,7 +61,7 @@ require "classes/user.php";
         </div>
         <div class="col-md-4">
           <div class="card feature-card">
-            <a href="products.php"> <img src="images/duplo.jpeg" class="card-img-top" alt="DUPLO Sets"></a>
+            <a href="products.php?duploId= 3"> <img src="images/duplo.jpeg" class="card-img-top" alt="DUPLO Sets"></a>
             <div class="card-body">
               <h5 class="card-title">DUPLO voor de Kleintjes</h5>
               <p class="card-text">DUPLO sets zijn perfect voor de jongste bouwers om hun verbeelding te laten groeien.</p>
@@ -72,7 +72,7 @@ require "classes/user.php";
           <div class="card feature-card">
             <a href="products.php"> <img src="images/uniek.jpeg" class="card-img-top" alt="Bouwspeelgoed Collectie"></a>
             <div class="card-body">
-              <h5 class="card-title">Uniek Bouwspeelgoed abc</h5>
+              <h5 class="card-title">Uniek Bouwspeelgoed</h5>
               <p class="card-text">Naast LEGO en DUPLO bieden wij ook andere unieke bouwsets en accessoires.</p>
             </div>
           </div>

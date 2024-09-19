@@ -11,13 +11,21 @@ $themes = $theme->getThemes();
 // Get filters from the form
 $id = isset($_GET['set_id']) ? $_GET['set_id'] : '';
 $name = isset($_GET['set_search']) ? $_GET['set_search'] : '';
-$brandid = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
-$themeid = isset($_GET['set_theme_id']) ? $_GET['set_theme_id'] : '';
+if (isset($_GET['legoId'])) {
+  $brandId = $_GET['legoId'];
+}
+else if (isset($_GET['duploId'])) {
+  $brandId = $_GET['duploId'];
+}
+else {
+  $brandId = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
+}
+$themeId = isset($_GET['set_theme_id']) ? $_GET['set_theme_id'] : '';
 $age = isset($_GET['set_age']) ? $_GET['set_age'] : '';
 $price = isset($_GET['set_price']) ? $_GET['set_price'] : '';
 
 // Fetch the filtered sets using the `filterSets` method
-$sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
+$sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
 ?>
 
 <!DOCTYPE html>
@@ -71,9 +79,17 @@ $sets = set::filterSets($id, $name, $brandid, $themeid, $age, $price);
         </ul>
       </div>
   </nav>
+  
 
   <div class="container-fluid">
-    <h3 style="color: limegreen;">Producten</h3>
+    <?php 
+    if (isset($_GET['legoId'])) {
+      echo '<br /><img src="images/logos/lego.png" width="20%"><br />';
+    }
+    else if (isset($_GET['duploId'])) {
+      echo '<br /><img src="images/logos/duplo.png" width="20%"><br />';
+    }
+    ?>
     <br />
     <div class="row">
       <!-- Main content (Products) -->
