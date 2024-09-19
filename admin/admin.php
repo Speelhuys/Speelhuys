@@ -1,5 +1,5 @@
 <?php
-require "../classes/database.php"; // assuming this handles DB connection
+require "../classes/database.php";
 require "../classes/user.php";
 require "../classes/session.php";
 require "../classes/set.php";
@@ -12,7 +12,7 @@ $brand = new brand;
 $brands = $brand->getBrands();
 $theme = new theme;
 $themes = $theme->getThemes();
-// Get filters from the form
+
 $id = isset($_GET['set_id']) ? $_GET['set_id'] : '';
 $name = isset($_GET['set_name']) ? $_GET['set_name'] : '';
 $brandid = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
