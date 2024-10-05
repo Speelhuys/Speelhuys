@@ -4,52 +4,44 @@ include "../Classes/set.php";
 include "../Classes/session.php";
 
 $image = null;
-
 $Session = Session::findActiveSession();
+
+//checkt voor sessie
+if ($Session == null) {
+
+    header("location: ../index.php");
+    exit;
+}
+
+// Voegt aangepaste gegevens toe aan de database
 if (isset($_GET['id'])) {
-$id = $_GET['id'];
-$set = set::getSet($id);
-if (isset($_POST['btnEdit'])) {
-    $set = new set;
-    $set->id = $id;
-    $set->name = $_POST['name'];
-    $set->description = $_POST['description'];
-    $set->brandId = $_POST['brandId'];  
-    $set->themeId = $_POST['themeId'];
-    $set->price = $_POST['price'];
-    $set->age = $_POST['age'];
-    $set->pieces =$_POST['pieces'];
-    $set->stock =$_POST['stock'];
-    $set->image = $image;
-    $set->update();
-    header("Location: products.php?message= Product successvol aangepast");
-}
-}
-
-if (isset($_POST['logout'])) {
-    header("location: ../index.php");
-    exit;
-}
-if (isset($_POST['watch'])) {
-    header("location: ../products.php");
-    exit;
-}
-
-if ($Session == null) { 
-
-    header("location: ../index.php");
-    exit;
-}
-
-if (isset($_POST["plaats"])) {
-
-    if (!empty($_FILES["image"]["name"])) {
-        $image = $_FILES["image"]["name"];
-
-        $target = "../image/sets/" . basename($image);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target);
+    $id = $_GET['id'];
+    $set = set::getSet($id);
+    if (isset($_POST['btnEdit'])) {
+        $set = new set;
+        $set->id = $id;
+        $set->name = $_POST['name'];
+        $set->description = $_POST['description'];
+        $set->brandId = $_POST['brandId'];
+        $set->themeId = $_POST['themeId'];
+        $set->price = $_POST['price'];
+        $set->age = $_POST['age'];
+        $set->pieces = $_POST['pieces'];
+        $set->stock = $_POST['stock'];
+        if (!empty($_FILES["image"]["name"])) {
+                $image = $_FILES["image"]["name"];
+                $target = "../image/sets/" . basename($image);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target);
+                $set->image = $image;
+        } 
+        else {
+                $set->image = $set->getSet($id)->image;
+        }
+        $set->update();
+        header("Location: admin.php?message= Product successvol aangepast");
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -121,21 +113,6 @@ if (isset($_POST["plaats"])) {
             background-color: #e65b50;
         }
 
-        #watch, #logout {
-            background-color: #ff6f61;
-            border: none;
-            padding: 10px 20px;
-            color: #f5f5f5;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        #watch:hover, #logout:hover {
-            background-color: #e65b50;
-            transform: scale(1.05);
-        }
 
         textarea.jqte {
             background-color: #222;
@@ -158,17 +135,11 @@ if (isset($_POST["plaats"])) {
     <div class="container-fluid text-center">
         <div class="row align-items-start" id="rowTop">
             <div class="col text-left">
-                <form method="post">
-                    <input type="submit" id="watch" name="watch" value="Bekijk">
-                </form>
             </div>
             <div class="col text-center">
                 <h1>Welkom</h1>
             </div>
             <div class="col text-right">
-                <form method="post">
-                    <input type="submit" id="logout" name="logout" value="Uitloggen">
-                </form>
             </div>
         </div>
 
@@ -179,44 +150,44 @@ if (isset($_POST["plaats"])) {
                         <div class="col-6">
                             <div class="form-group row">
                                 <label for="name">Voer de naam in</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Voer de naam in">
+                                <input type="text" class="form-control" value="<?php echo $set->name ?>" id="name" name="name" placeholder="Voer de naam in">
                             </div>
                             <div class="form-group row">
                                 <label for="brandId">Voer brand id in</label>
-                                <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Voer brand id in">
+                                <input type="text" class="form-control" value="<?php echo $set->brandId ?>" id="brandId" name="brandId" placeholder="Voer brand id in">
                             </div>
                             <div class="form-group row">
                                 <label for="themeId">Voer theme id in</label>
-                                <input type="text" class="form-control" id="themeId" name="themeId" placeholder="Voer theme id in">
+                                <input type="text" class="form-control" value="<?php echo $set->themeId ?>" id="themeId" name="themeId" placeholder="Voer theme id in">
                             </div>
                             <div class="form-group row">
                                 <label for="price">Voer prijs in</label>
-                                <input type="text" class="form-control" id="price" name="price" placeholder="Voer prijs in">
+                                <input type="text" class="form-control" value="<?php echo $set->price ?>" id="price" name="price" placeholder="Voer prijs in">
                             </div>
                             <div class="form-group row">
                                 <label for="age">Voer leeftijd in</label>
-                                <input type="text" class="form-control" id="age" name="age" placeholder="Voer leeftijd in">
+                                <input type="text" class="form-control" value="<?php echo $set->age ?>" id="age" name="age" placeholder="Voer leeftijd in">
                             </div>
                             <div class="form-group row">
                                 <label for="pieces">Voer aantal stenen in</label>
-                                <input type="text" class="form-control" id="pieces" name="pieces" placeholder="Voer aantal stenen in">
+                                <input type="text" class="form-control" value="<?php echo $set->pieces ?>" id="pieces" name="pieces" placeholder="Voer aantal stenen in">
                             </div>
                             <div class="form-group row">
                                 <label for="stock">Voer voorraad in</label>
-                                <input type="text" class="form-control" id="stock" name="stock" placeholder="Voer voorraad in">
+                                <input type="text" class="form-control" value="<?php echo $set->stock ?>" id="stock" name="stock" placeholder="Voer voorraad in">
                             </div>
                             <div class="form-group row">
-                                <label for="afbeelding">Voeg afbeelding toe</label>
-                                <input type="file" class="form-control-file" id="afbeelding" name="afbeelding">
+                                <label for="image">Voeg afbeelding toe</label>
+                                <input type="file" class="form-control-file" value="<?php echo $set->image ?>" id="image" name="image">
                             </div>
                         </div>
                         <div class="col-6">
-                            <textarea class="jqte" id="content" name="content" style="width: 100%;" placeholder="Schrijf je blog hier..."></textarea>
+                            <textarea class="jqte" id="description" name="description" style="width: 100%;" placeholder="Schrijf je blog hier..."><?php echo $set->description ?></textarea>
                         </div>
                     </div>
                     <div class="form-group row mt-4">
                         <div class="col-12 text-center">
-                            <input type="submit" class="btn btn-primary" id="plaats" name="plaats" value="Plaats blog">
+                            <input type="submit" class="btn btn-primary" id="btnEdit" name="btnEdit" value="Aanpassen">
                         </div>
                     </div>
                 </div>
@@ -225,7 +196,7 @@ if (isset($_POST["plaats"])) {
     </div>
 
     <footer>
-        <p>&copy; 2024 Gruwelijk Design Blog</p>
+        <p>&copy; 2024 Speelhuys</p>
     </footer>
 
     <script src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>

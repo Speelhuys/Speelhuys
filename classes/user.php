@@ -9,6 +9,7 @@ class user
     public $role;
     public $email;
 
+    // Valideert de gebruiker
     public static function validateUser($username, $password)
     {
         $conn = database::start();
@@ -33,7 +34,7 @@ class user
         $conn->close();
         return $user;
     }
-    //deze functie haalt (aan de hand van de gegeven ID) klantgegevens op uit de database
+    //Haalt klantgegevens op met param
     public static function findById($id)
     {
         $conn = database::start();

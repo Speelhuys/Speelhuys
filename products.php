@@ -1,30 +1,32 @@
 <?php
-require "classes/database.php"; // assuming this handles DB connection
-require "classes/user.php";
-require "classes/set.php";
-require "classes/brand.php";
-require "classes/theme.php";
+require "../classes/database.php";
+require "../classes/user.php";
+require "../classes/set.php";
+require "../classes/brand.php";
+require "../classes/theme.php";
+
+
+// Gegevens ophalen van verschillende classes
 $brand = new brand;
 $brands = $brand->getBrands();
 $theme = new theme;
 $themes = $theme->getThemes();
-// Get filters from the form
+
+// Haalt gegevens op als ze bestaan (plus bepaalde producten ophalen i.v.m thuispagina
 $id = isset($_GET['set_id']) ? $_GET['set_id'] : '';
 $name = isset($_GET['set_search']) ? $_GET['set_search'] : '';
 if (isset($_GET['legoId'])) {
   $brandId = $_GET['legoId'];
-}
-else if (isset($_GET['duploId'])) {
+} else if (isset($_GET['duploId'])) {
   $brandId = $_GET['duploId'];
-}
-else {
+} else {
   $brandId = isset($_GET['set_brand_id']) ? $_GET['set_brand_id'] : '';
 }
 $themeId = isset($_GET['set_theme_id']) ? $_GET['set_theme_id'] : '';
 $age = isset($_GET['set_age']) ? $_GET['set_age'] : '';
 $price = isset($_GET['set_price']) ? $_GET['set_price'] : '';
 
-// Fetch the filtered sets using the `filterSets` method
+// Gefilterde sets ophalen
 $sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
 ?>
 
@@ -38,11 +40,9 @@ $sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Custom styling to move the filter bar to the right side */
     .filter-bar {
       position: fixed;
       top: 80px;
-      /* Adjust to position the filter below the navbar */
       right: 0;
       width: 300px;
       padding: 20px;
@@ -54,52 +54,57 @@ $sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
 
     .content {
       margin-right: 320px;
-      /* Add margin to accommodate the filter bar */
     }
   </style>
 </head>
 
 <body style="background-image: url(images/brickwall.png); background-attachment: fixed;">
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <div class="col-2"><img src="images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div> 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.php">Producten</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="loginpage.php">Inloggen</a>
-          </li>
-        </ul>
-      </div>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="col-2"><img src="images/logos/Speelhuys.png" style="height: 100%; width: 100%;" alt="Speelhuys Logo"></div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="products.php">Producten</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="loginpage.php">Inloggen</a>
+        </li>
+      </ul>
+    </div>
   </nav>
-  
+
 
   <div class="container-fluid">
-    <?php 
+    <?php
     if (isset($_GET['legoId'])) {
       echo '<br /><img src="images/logos/lego.png" width="20%"><br />';
-    }
-    else if (isset($_GET['duploId'])) {
+    } else if (isset($_GET['duploId'])) {
       echo '<br /><img src="images/logos/duplo.png" width="20%"><br />';
     }
     ?>
     <br />
     <div class="row">
-      <!-- Main content (Products) -->
       <div class="content col-md-9">
         <div class="row">
+          <!-- beschouwt alle beschikbare producten -->
           <?php if (count($sets) > 0) : ?>
             <?php foreach ($sets as $set) : ?>
               <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                  <img src="images/sets/<?php echo $set->image; ?>" class="card-img-top" alt="<?php echo $set->name; ?>">
+                  <?php
+                  // check of er een image is
+                  if ($set->image != null) {
+                    echo '<img src="images/sets/' . $set->image . '" class="card-img-top" alt="' . $set->name . '">';
+                  } else {
+                    echo '<img src="images/noimage.png" class="card-img-top">';
+                  }
+                  ?>
                   <div class="card-body">
                     <h5 class="card-title"><?php echo $set->name; ?></h5>
                     <p class="card-text"><?php echo $set->description; ?></p>
@@ -119,7 +124,7 @@ $sets = set::filterSets($id, $name, $brandId, $themeId, $age, $price);
       </div>
     </div>
 
-    <!-- Sidebar filter bar -->
+    <!-- Filter -->
     <div class="filter-bar" style="height: 100%; background-image: url(images/brick.png);">
       <h3>Filters</h3>
       <form action="products.php" method="GET">

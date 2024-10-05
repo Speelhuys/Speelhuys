@@ -1,9 +1,9 @@
 <?php
-// Include de benodigde classes voor functies
 require "classes/session.php";
 require "classes/user.php";
 require "classes/database.php";
 
+// checkt of er een message is doorgegeven
 $divError = null;
 if (isset($_GET["message"])) {
   $_GET["message"];

@@ -1,29 +1,19 @@
 <?php
-// Include classes for different functionalities
 include "../classes/database.php";
 include "../Classes/set.php";
 include "../Classes/session.php";
 
 $image = null;
-
 $Session = Session::findActiveSession();
 
-if (isset($_POST['logout'])) {
-    header("location: ../index.php");
-    exit;
-}
-if (isset($_POST['watch'])) {
-    header("location: ../products.php");
-    exit;
-}
-
-if ($Session == null) { // Corrected comparison operator
-
+//checkt voor sessie
+if ($Session == null) { 
     header("location: ../index.php");
     exit;
 }
 
-if (isset($_POST["plaats"])) {
+// Voegt ingevulde gegevens toe aan de database
+if (isset($_POST["btnAdd"])) {
 
     if (!empty($_FILES["image"]["name"])) {
         $image = $_FILES["image"]["name"];
@@ -45,7 +35,7 @@ if (isset($_POST["plaats"])) {
     $set->image = $image; // Corrected to use uploaded image
     $set->insert();
 
-    header("location: admin.php");
+    header("location: admin.php?message=Product successvol toegevoegd");
     exit;
 }
 ?>
@@ -63,19 +53,11 @@ if (isset($_POST["plaats"])) {
     <div class="container-fluid text-center">
         <div class="row align-items-start" id="rowTop">
             <div class="col text-left">
-                <form method="post">
-                    <input type="submit" id="watch" name="watch" value="watch">
-                </form>
             </div>
             <center>
                 <h1> welkom </h1>
             </center>
             <div class="col">
-                <form method="post">
-                    <div class="col text-right">
-                        <input type="submit" id="logout" name="logout" value="Uitloggen">
-                    </div>
-                </form>
             </div>
         </div>
         <strong>
@@ -88,12 +70,6 @@ if (isset($_POST["plaats"])) {
                                     <label class="col-4 col-form-label" for="name">Voer de naam in</label>
 
                                     <input type="text" class="form-control" style="width: 30%;" id="name" name="name" placeholder="Voer de naam in">
-
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-4 col-form-label" for="name">beschrijving</label>
-
-                                    <input type="text" class="form-control" style="width: 30%;" id="description" name="description" placeholder="Voer de beschrijving in">
 
                                 </div>
                                 <div class="form-group row">
@@ -137,11 +113,11 @@ if (isset($_POST["plaats"])) {
                                 </div>
                             </div>
                             <div class="col-6">
-                                <textarea class="jqte" id="content" name="content" required></textarea>
+                                <textarea class="jqte" id="description" name="description" required></textarea>
                             </div>
                             <div class="form-group row">
                                 <div class="col-6">
-                                    <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="plaats" name="plaats" value="Plaats blog">
+                                    <input type="submit" class="btn btn-primary" style="margin-left: 500px;" id="btnAdd" name="btnAdd" value="Plaats blog">
                                 </div>
                             </div>
                         </div>

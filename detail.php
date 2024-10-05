@@ -1,17 +1,27 @@
 <?php
-
 include "Classes/database.php";
 include "Classes/set.php";
+include "Classes/brand.php";
+include "Classes/theme.php";
 $image = null;
 
+// Gegevens ophalen van verschillende classes
 $id = $_GET['id'];
 $set = set::getSet($id);
-
-
+$brand = brand::getBrand($set->brandId);
+$theme = theme::getTheme($set->themeId);
 
 if ($set == null) {
-    echo "geen blog gevonden";
+    echo "geen set gevonden";
     exit;
+}
+if ($brand == null) {
+    $brand = new stdClass(); // Creeër een leeg object
+    $brand->name = 'Geen geldig merk'; // Geeft een basisnaam
+}
+if ($theme == null) {
+    $theme = new stdClass(); // Creeër een leeg object
+    $theme->name = 'Geen geldig Thema'; // Geeft een basisnaam
 }
 
 
@@ -48,7 +58,8 @@ if ($set == null) {
             color: #333;
         }
 
-        .description, .author {
+        .description,
+        .author {
             font-size: 18px;
             color: #555;
             margin-top: 20px;
@@ -72,7 +83,7 @@ if ($set == null) {
     </style>
 </head>
 
-<body id="detail" style="background-image: url(images/waves.png); background-repeat: no-repeat; background-size: cover; background-position: center top; ">
+<body id="detail" style="background-image: url(images/waves.png); background-repeat: no-repeat; background-size: cover; background-position: center top;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -84,21 +95,39 @@ if ($set == null) {
                             <p><?php echo $set->description; ?></p>
                         </div>
                         <div class="col-md-6">
-                            <img src="<?= "images/sets/" . $set->image ?>" class="card-img-top" alt="Product Image">
+                            <!-- checkt of er een image is -->
+                            <?php
+                            if ($set->image != null) {
+                                echo '<img src="images/sets/' . $set->image . '" class="card-img-top" alt="' . $set->name . '">';
+                            } else {
+                                echo '<img src="images/noimage.png" class="card-img-top">';
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                    <!-- Secties toevoegen voor Name, Brand, Theme, Age, en Price -->
+                    <div class="row brand-theme mt-4">
+                        <div class="col-md-6">
+                            <h1>Naam: <?php echo $set->name; ?></h1>
+                        </div>
+                        <div class="col-md-6">
+                            <h1>Merk: <?php echo $set->brandId .' ('.$brand->name.')'; ?></h1>
                         </div>
                     </div>
 
                     <div class="row brand-theme mt-4">
                         <div class="col-md-6">
+                            <h1>Thema: <?php echo $set->themeId .' ('.$theme->name.')'; ?></h1>
                         </div>
                         <div class="col-md-6">
-                            <h1>Theme: <?php echo $set->themeId; ?></h1>
+                            <h1>Leeftijd: <?php echo $set->age; ?></h1>
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col">
-                            <p class="price">Price: &euro;<?php echo $set->price; ?></p>
+                            <p class="price">Prijs: &euro;<?php echo $set->price; ?></p>
                         </div>
                     </div>
 

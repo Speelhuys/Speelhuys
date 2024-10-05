@@ -13,6 +13,7 @@ class set
     public $pieces;
     public $stock;
 
+    // Alle sets ophalen
     public function getSets()
     {
         $conn = database::start();
@@ -42,7 +43,7 @@ class set
         $conn->close();
         return $sets;
     }
-    //similair aan de vorige functie, maar haalt (aan de hand van de blog_id) in de plaats van de gegevens van alle blogs alleen gegevens van één blog
+    // Set ophalen met param
     public static function getSet($id)
     {
         $conn = database::start();
@@ -57,7 +58,7 @@ class set
                 $set->id = $row['set_id'];
                 $set->name = $row['set_name'];
                 $set->description = $row['set_description'];
-                $set->brandId = $row['set_price'];
+                $set->brandId = $row['set_brand_id'];
                 $set->themeId = $row['set_theme_id'];
                 $set->image = $row['set_image'];
                 $set->price = $row['set_price'];
@@ -69,7 +70,7 @@ class set
         $conn->close();
         return $set;
     }
-    //deze functie zorgt ervoor dat de ingevoerde gegevens in de database komen
+    //Set toevoegen
     public function insert()
     {
         $conn = database::start();
@@ -108,7 +109,7 @@ class set
         $conn->query($sql);
         $conn->close();
     }
-    //deze functie zorgt ervoor dat de gegevens in de database bewerkt worden
+    //Set bewerken
     public function update()
     {
         $conn = database::start();
@@ -132,7 +133,7 @@ class set
         $conn->query($sql);
         $conn->close();
     }
-    //deze functie zorgt ervoor dat je wat wist uit de database (aan de hand van de blog_id)
+    //Set verwijderen met param
     public static function delete($id)
     {
         $conn = database::start();
@@ -141,6 +142,7 @@ class set
         $conn->query($sql);
         $conn->close();
     }
+    //sets filteren
     public static function filterSets($id, $name, $brandid, $themeid, $age, $price)
     {
 
@@ -197,10 +199,8 @@ class set
             }
         }
 
-        // Close the connection
         $conn->close();
 
-        // Return the results
         return $sets;
     }
 }

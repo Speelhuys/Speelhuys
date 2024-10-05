@@ -40,7 +40,7 @@ require "classes/user.php";
     <h1 class="text-center">Neem Contact Op met Speelhuys</h1>
     <p class="text-center mb-4">Heb je vragen over ons assortiment bouwspeelgoed, of wil je meer weten over een bestelling? Neem gerust contact met ons op via het onderstaande formulier, of bereik ons via de andere contactopties.</p>
     
-    <!-- Contact Form -->
+
     <div class="row justify-content-center">
       <div class="col-md-8">
         <form action="submit_contact.php" method="post">
@@ -63,7 +63,7 @@ require "classes/user.php";
       </div>
     </div>
 
-    <!-- Contact Details -->
+
     <div class="row justify-content-center mt-5">
       <div class="col-md-8 text-center">
         <h4>Onze Contactgegevens</h4>
@@ -77,7 +77,7 @@ require "classes/user.php";
       </div>
     </div>
 
-    <!-- Map Section -->
+
     <div class="row justify-content-center mt-5">
       <div class="col-md-8">
         <h4 class="text-center">Vind ons hier</h4>
@@ -86,7 +86,7 @@ require "classes/user.php";
     </div>
   </div>
 
-  <!-- Footer Section -->
+
   <footer class="bg-dark text-white py-4 mt-5">
     <div class="container text-center">
       <p>&copy; 2024 Speelhuys. Alle rechten voorbehouden.</p>

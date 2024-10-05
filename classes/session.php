@@ -6,7 +6,7 @@ class Session
     public $key;
     public $start;
     public $end;
-    //deze functie zoekt naar actieve sessies
+    //Zoekt naar actieve sessies
     public static function findActiveSession()
     {
         $session = null;
@@ -28,7 +28,7 @@ class Session
         $conn->close();
         return $session;
     }
-    //deze functie creërt een nieuwe sessie
+    //Creërt een nieuwe sessie
     public function insert()
     {
         $conn = database::start();
