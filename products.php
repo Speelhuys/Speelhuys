@@ -1,9 +1,9 @@
 <?php
-require "../classes/database.php";
-require "../classes/user.php";
-require "../classes/set.php";
-require "../classes/brand.php";
-require "../classes/theme.php";
+require "classes/database.php";
+require "classes/user.php";
+require "classes/set.php";
+require "classes/brand.php";
+require "classes/theme.php";
 
 
 // Gegevens ophalen van verschillende classes
